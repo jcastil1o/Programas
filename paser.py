@@ -17,7 +17,7 @@ class LL1Parser:
 
             if top == current_input:
                 if top == STACK_END:
-                    return True, derivation, None  # Aceptación
+                    return True, derivation, None 
                 stack.pop()
                 input_index += 1
             elif top in self.grammar['non_terminals']:
@@ -30,11 +30,11 @@ class LL1Parser:
                         if symbol != 'ε':
                             stack.append(symbol)
                 else:
-                    return False, derivation, f"Error: No entry in table for symbol '{current_input}' and non-terminal '{top}' at position {input_index}."
+                    return False, derivation, f"Error: caracter no encontrado en la tabla '{current_input}' sin terminal '{top}', en la posición: {input_index}."
             else:
-                return False, derivation, f"Error: Unexpected symbol '{current_input}', expected '{top}' at position {input_index}."
+                return False, derivation, f"Error: caracter no esperado '{current_input}', se esperaba '{top}' en la posición {input_index}."
 
-        return False, derivation, "Error: Parsing failed."
+        return False, derivation, "Error: Fallo en lectura de la cadena."
 
 grammar = {
     'non_terminals': ['E', 'T', 'F'],
